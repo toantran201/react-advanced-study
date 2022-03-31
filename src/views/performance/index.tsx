@@ -1,6 +1,6 @@
 import React from "react";
 import CodeSplitting from "./section/CodeSplitting";
-import Windowing from "./components/Windowing";
+import Windowing from "./section/Windowing";
 
 const Performance = () => {
   return (
