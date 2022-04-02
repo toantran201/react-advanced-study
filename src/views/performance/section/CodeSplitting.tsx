@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 
 const CodeSplitting = () => {
-  const loadSmileFace = () => import ("../components/SmileFace")
+  const loadSmileFace = () => import ("../components/CodeSplitting/SmileFace")
   const SmileFace = React.lazy(loadSmileFace)
 
   const [showSmileFace, setShowSmileFace] = useState(false);
 
   return (
     <div>
-      <h2 className="text-xl font-normal">Code splitting</h2>
+      <h2 className="text-xl font-bold">Code splitting</h2>
       <label
         onMouseEnter={loadSmileFace}
         onFocus={loadSmileFace}

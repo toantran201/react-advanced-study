@@ -20,7 +20,7 @@ const Windowing = () => {
 
   return(
     <div className="mt-4">
-      <h2 className="text-xl font-normal">Windowing</h2>
+      <h2 className="text-xl font-bold">Windowing</h2>
       <ul ref={listRef} className="relative h-40 overflow-scroll">
         <li style={{height: rowVirtualizer.totalSize}}/>
         {rowVirtualizer.virtualItems.map(({index, size, start}) => {
