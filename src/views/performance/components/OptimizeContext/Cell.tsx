@@ -6,11 +6,19 @@ export interface CellProps {
 	col: number
 }
 
-const Cell = ({row, col}: CellProps) => {
-	const state = useGridState()
+const withStateSlice = (Component: any, slice: any) => {
+	const MemoComponent = React.memo(Component)
+	const Wrapper = (props: any, ref: any) => {
+		const state = useGridState()
+		return <MemoComponent ref={ref} state={slice(state, props)} {...props}/>
+	}
+	Wrapper.displayName = `withStateSlice(${Component.displayName || Component.name} )`
+	return React.memo(React.forwardRef(Wrapper))
+}
+
+// @ts-ignore
+const Cell = ({state: cell, row, col}: CellProps) => {
 	const dispatch = useGridDispatch()
-	// @ts-ignore
-	const cell = state.grid[row][col]
 	// @ts-ignore
 	const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, col})
 	return (
@@ -27,4 +35,5 @@ const Cell = ({row, col}: CellProps) => {
 	)
 }
 
-export default React.memo(Cell)
+// @ts-ignore
+export default withStateSlice(Cell, (state: any, {row, col}) => state.grid[row][col])
